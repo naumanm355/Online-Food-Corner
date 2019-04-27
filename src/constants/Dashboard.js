@@ -10,7 +10,7 @@ export const data_Actions= {
 export const data_Status ={
 	data_Create :{
     NEW: "NEW",
-    ADDFOOD: "ADD_FOOD",
+    ADDFOOD: "ADD_FOOD",     //add food
     SHOWFOOD: "SHOW_FOOD",
     ADDCHEFF: "ADD_CHEFF"
 	}
