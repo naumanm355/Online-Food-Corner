@@ -1,7 +1,7 @@
 
 ******************** Packages For Front End ********************
 
-========* Node Modules *==========
+========* Node Modules *============
 
     npm install
 
