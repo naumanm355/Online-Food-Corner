@@ -57,10 +57,10 @@ render(){
       <Table>
         <TableHead style={{backgroundColor:"indigo"}}>
           <TableRow>
-            <TableCell style={{color:'white',fontSize:15}}>Email Adress</TableCell>
-            <TableCell style={{color:'white',fontSize:15}} align="right">Full Name</TableCell>
-            <TableCell style={{color:'white',fontSize:15}} align="right">Registraiton Number</TableCell>
-            <TableCell style={{color:'white',fontSize:15}} align="right">Section</TableCell>
+            <TableCell style={{color:'white',fontSize:15}}>Cheff Name</TableCell>
+            <TableCell style={{color:'white',fontSize:15}} align="right">Contact</TableCell>
+            <TableCell style={{color:'white',fontSize:15}} align="right">Address</TableCell>
+            <TableCell style={{color:'white',fontSize:15}} align="right"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

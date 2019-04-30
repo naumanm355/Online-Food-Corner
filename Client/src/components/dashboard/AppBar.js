@@ -77,7 +77,7 @@ class ButtonAppBar extends Component {
           <a onClick={()=>this.props.history.push('/')} style={{color:'black',fontWeight:'bold',cursor:'pointer'}}>
             MENU
           </a>
-          {/* &emsp;
+          &emsp;
           <a onClick={()=>this.props.handleAddFoodClick()} style={{color:'black',fontWeight:'bold',color:'black',cursor:'pointer'}}>
             ADD FOOD
           </a>
@@ -88,7 +88,7 @@ class ButtonAppBar extends Component {
           &emsp;
           <a onClick={()=>this.props.history.push('/Team_View')} style={{color:'black',fontWeight:'bold',cursor:'pointer'}}>
             DELIVERY TEAM
-          </a> */}
+          </a>
           &emsp;  
           <a style={{cursor:'pointer',color:'black'}} onClick={this.props.handleShowcart}>
             <img src={addshopingcart}/>1

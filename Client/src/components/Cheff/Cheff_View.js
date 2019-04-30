@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import {cheff_Status,cheff_Actions} from '../../constants/Cheff';
 import ShowCheff from './ShowCheff'
 import AddCheff from './AddCheff'
-
+import { studentServer } from '../../server/CheffServer';
 const mapStateToProps = (state) => {
   console.log("****************************state:", state);
   return {
@@ -15,6 +15,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchStudents: () => { dispatch(studentServer.fetchStudents()) },
     handleAddCheff : () =>{dispatch({ type: cheff_Actions.cheff_Create.ADDCHEFF})},
     
   };
@@ -25,6 +26,10 @@ class Cheff_View extends Component {
       super(props);
      this.state = {};
   
+  }
+  componentDidMount(){
+    alert("cheff view called");
+    this.props.fetchStudents();
   }
 
   getScreen(status) {
