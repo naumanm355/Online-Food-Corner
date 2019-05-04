@@ -34,18 +34,6 @@ const styles = theme =>( {
     color: theme.palette.text.secondary,
   },
 
-
-  showImg: {
-
-    [theme.breakpoints.up('md')]: {
-      
-     
-  },
-     [theme.breakpoints.down('md')]: {
-      
-      
-    },
-  }
 });
 
 class ButtonAppBar extends Component {

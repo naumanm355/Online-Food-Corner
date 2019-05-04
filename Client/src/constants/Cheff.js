@@ -3,7 +3,7 @@ export const cheff_Actions= {
     NEW: "NEW",
     ADDCHEFF: "ADD_CHEFF",
     SHOWCHEFF: "SHOW_CHEFF",
-    FAILURE: "FAILURE"
+    
 	}
 }
 
@@ -12,6 +12,6 @@ export const cheff_Status ={
     NEW: "NEW",
     ADDCHEFF: "ADD_CHEFF",
     SHOWCHEFF: "SHOW_CHEFF",
-    FAILURE: "FAILURE"
+    
 	}
 }

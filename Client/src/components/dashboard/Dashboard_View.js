@@ -16,6 +16,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    handleClickShowDashboard : () =>{dispatch({type: data_Actions.data_Create.NEW})},
     handleAddFoodClick : () =>{dispatch({ type: data_Actions.data_Create.ADDFOOD})},
     handleShowcart : () =>{dispatch({ type: data_Actions.data_Create.SHOWCART})},
     handleShowFood : () =>{dispatch({ type: data_Actions.data_Create.FOODDETAIL})},
@@ -44,7 +45,7 @@ class Dashboard_View extends Component {
       break;
       case data_Status.data_Create.ADDFOOD:
         return (
-          <AddFood />
+          <AddFood handleClickShowDashboard={this.props.handleClickShowDashboard}/>
         );
         break;
       case data_Status.data_Create.SHOWCART:
@@ -54,7 +55,7 @@ class Dashboard_View extends Component {
           break;
       case data_Status.data_Create.FOODDETAIL:
           return (
-            <FoodDetail />
+            <FoodDetail handleClickShowDashboard={this.props.handleClickShowDashboard}/>
           );
           break;
 

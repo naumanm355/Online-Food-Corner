@@ -21,17 +21,17 @@ const styles = theme => ({
 });
 
 let id = 0;
-function createData(name, calories, fat, carbs) {
+function createData(name, calories, fat) {
   id += 1;
-  return { id, name, calories, fat, carbs};
+  return { id, name, calories, fat};
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24),
-  createData('Ice cream sandwich', 237, 9.0, 37),
-  createData('Eclair', 262, 16.0, 24,),
-  createData('Cupcake', 305, 3.7, 67,),
-  createData('Gingerbread', 356, 16.0, 49,),
+  createData('Kaleem', '0304-2387456', 'Multan'),
+  createData('Shahid', '0302-2387645', 'Lahore'),
+  createData('Shahbaz','0302-8734917', 'Karachi'),
+  createData('Fareed', '0333-2387465', 'Multan'),
+  createData('Nasir',  '0332-3233456', 'Chungi'),
 ];
 
 class ShowTeam extends React.Component{
@@ -60,7 +60,7 @@ render(){
             <TableCell style={{color:'white',fontSize:15}}>Cheff Name</TableCell>
             <TableCell style={{color:'white',fontSize:15}} align="right">Contact</TableCell>
             <TableCell style={{color:'white',fontSize:15}} align="right">Address</TableCell>
-            <TableCell style={{color:'white',fontSize:15}} align="right"></TableCell>
+            
           </TableRow>
         </TableHead>
         <TableBody>

@@ -15,12 +15,12 @@ import {cheff_Status} from '../constants/Cheff'
               ...state, cheff_Status: cheff_Status.cheff_Create.ADDCHEFF,
               cheffList:action.payload
             }
-        // case cheff_Actions.cheff_Create.SHOWCHEFF:
+        case cheff_Actions.cheff_Create.ADDTOCART:
         
-        //     return {
-        //       ...state, cheff_Status: cheff_Status.cheff_Create.SHOWCHEFF,
+            return {
+              ...state, cheff_Status: cheff_Status.cheff_Create.ADDTOCART,
               
-        //     }
+            }
         default:
         console.log("default is firing")
         return {...state,cheff_Status: cheff_Status.cheff_Create.SHOWCHEFF};

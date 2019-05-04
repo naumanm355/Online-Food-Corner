@@ -79,7 +79,8 @@ class FoodDetail extends Component {
               </FormControl>
             </Grid>
             <Grid item>
-      <Button variant="contained" color="secondary" className={classes.button}>Add to Cart</Button>
+      <Button variant="contained" color="secondary" className={classes.button}
+      onClick={this.props.handleClickShowDashboard}>Add to Cart</Button>
             </Grid>
           </Grid>
           

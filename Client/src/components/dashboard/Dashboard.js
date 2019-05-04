@@ -79,7 +79,7 @@ class Dashboard extends Component {
                 </Grid> 
             </Grid>
             <Grid item>
-              {/* <h2>Welcome to foodfun</h2> */}
+              <h2>Welcome to foodfun</h2>
               <CardExample handleShowFood={this.props.handleShowFood}/>
             </Grid>
             

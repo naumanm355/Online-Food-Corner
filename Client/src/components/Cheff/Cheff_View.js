@@ -27,10 +27,10 @@ class Cheff_View extends Component {
      this.state = {};
   
   }
-  componentDidMount(){
-    alert("cheff view called");
-    this.props.fetchStudents();
-  }
+  // componentDidMount(){
+  //   alert("cheff view called");
+  //   this.props.fetchStudents();
+  // }
 
   getScreen(status) {
     //console.log("I am from register Component getScreen: " + status);

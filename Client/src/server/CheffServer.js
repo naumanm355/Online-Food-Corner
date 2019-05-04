@@ -10,29 +10,37 @@ export const studentServer = {
 
 export function fetchStudents()
 {
-  const getRequest =  fetch(ROOT_URL+'/api/Accounts/list' , {
+  fetch('http://localhost:3000/api/Accounts/list' , {
         method: 'GET',
         headers: {'Content-Type':'application/json;charset=UTF-8'},
          mode: 'cors',
-   }).then((response)=>{
-    console.log('********'+response.status); //200
-    alert(response.dataStatus)  //undefined
-    response.json().then(data=>{
-      console.log("data:......" + data.dataStatus)
+   }).then(response=>{
+      console.log("response", response);
+
+  //   // console.log('********'+response.status); //200
+  //   // console.log("Response from server",response)  //undefined
+  //   //json mein convert krnay k liye .json() ka function he use hotahay na? G han
+  //  //Is mein error hay. Let me see if that's the correct function. 
+  //   JSON.parse(response).then(data=>{
+  //     console.log("data:......" + data)
     
-      if(data.dataStatus =='failure'){
-        store.dispatch({type:cheff_Actions.cheff_Create.FAILURE,payload:data});
-        return ;
-      }
-    else{
-          alert("list length is "+ data.todos.length)
-        store.dispatch({type:cheff_Actions.cheff_Create.ADDCHEFF,payload:data});
-        return ;
-    }
+  //     if(data.dataStatus ==='failure'){
+  //       store.dispatch({type:cheff_Actions.cheff_Create.FAILURE,payload:data});
+  //       return ;
+  //     }
+  //   else{
+  //         alert("list length is "+ data.todos.length)
+  //       store.dispatch({type:cheff_Actions.cheff_Create.ADDCHEFF,payload:data});
+  //       return ;
+  //   }
    
-     });
-})
-return store.dispatch({type:cheff_Actions.cheff_Create.SHOWCHEFF,payload:"None"});
+  
+}).then(data=>{
+  console.log("Data",data);
+}).catch(err=> {
+  console.log("Error in converting to json",err)
+ });
+return store.dispatch({type:cheff_Actions.cheff_Create.SHOWCHEFF,payload:"none"});
 
 };
 

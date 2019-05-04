@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { withRouter } from 'react-router-dom';
+import {storage} from '../../firebase' //'../firebase';
 
 const styles = theme => ({
   main: {
@@ -24,7 +25,7 @@ const styles = theme => ({
     },
   },
   paper: {
-    marginTop: theme.spacing.unit * 8,
+    marginTop: 10,// theme.spacing.unit * 8,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -46,62 +47,87 @@ const styles = theme => ({
 class AddFood extends React.Component {
     constructor(props){
         super(props);
+        this.state={
+          image:null, url:'', progress: 0
+        }
+        this.handleChange=this.handleChange.bind(this);
+        this.handleUpload = this.handleUpload.bind(this);
     }
-    render(){
+    
+    handleChange = e => {
+      if (e.target.files[0]) {
+        const image = e.target.files[0];
+        this.setState(() => ({image}));
+      }
+    }
+    handleUpload = () => {
+        const {image} = this.state;
+        const uploadTask = storage.ref(`images/${image.name}`).put(image);
+        uploadTask.on('state_changed', 
+        (snapshot) => {
+          // progrss function ....
+          const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+          this.setState({progress});
+        }, 
+        (error) => {
+             // error function ....
+          console.log(error);
+        }, 
+      () => {
+          // complete function ....
+          storage.ref('images').child(image.name).getDownloadURL().then(url => {
+              console.log("Image url",url);
+              this.setState({url});
+          })
+      });
+    }
+render(){
   const { classes } = this.props;
 
   return (
     <main className={classes.main}>
       <CssBaseline />
       <Paper className={classes.paper}>
+      <progress value={this.state.progress} max="100"/>
         <Avatar className={classes.avatar}>
           {/* <LockOutlinedIcon /> */}
-          
         </Avatar>
         <Typography component="h1" variant="h5">
         Add Food Items
         </Typography>
         <form className={classes.form}>
-          <FormControl margin="normal" required fullWidth>
+        {/* <input type="text" data-length="10" required placeholder="Food Name" autoFocus>
+        </input>
+        <input type="text" data-length="10" required placeholder="Price" >
+        </input> */}
+          {/* <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="name">Food Name</InputLabel>
             <Input id="name" name="name" autoComplete="name" autoFocus />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="price">Price</InputLabel>
             <Input name="price" type="number" id="price" />
-          </FormControl>
+          </FormControl> */}
           {/* <FormControl margin="normal" required fullWidth> */}
             <InputLabel>Add Food Picture</InputLabel>
-            <input type="file" id="imgupload" style={{margin:10}}/>
-            <a href="#" onclick="$('#imgupload').trigger('click'); return false;"></a>
+          <input type="file" id="imgupload" style={{margin:10,cursor:'pointer'}} onChange={this.handleChange}/>
+          <button style={{cursor:'pointer',}} type="button" onClick={this.handleUpload}>Upload</button>
+            {/* <a href="#" onclick="$('#imgupload').trigger('click'); return false;"></a> */}
+          <img src={this.state.url || 'https://via.placeholder.com/300x300'} style={{width:300,height:300}}/>
+            {/* <textarea id="textarea2" placeholder="Description" class="materialize-textarea" data-length="120"></textarea> */}
+            
            {/* </FormControl> */}
-          <FormControl margin="normal" required fullWidth>
+          {/* <FormControl margin="normal" required fullWidth> */}
             {/* <InputLabel htmlFor="description">Description</InputLabel> */}
-            <textarea name="description" placeholder="Description" type="text" maxlength="300"  id="description" />
-          </FormControl>
+            {/* <textarea name="description" placeholder="Description" type="text" maxlength="300"  id="description" />
+          </FormControl> */}
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign in
-          </Button>
-          {/* <a class="waves-effect waves-light" style={{margin:10}}>OR</a> */}
+          {/* <Button type="submit" fullWidth variant="contained"vcolor="primary"
+            className={classes.submit}>Save</Button> */}
           <Typography style={{paddingTop:20,fontWeight:'bold',textAlign:'center'}}>OR</Typography>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Show Food!
-          </Button>
-          
-          
+          {/* <Button fullWidth variant="contained" color="primary" className={classes.submit}
+           // type="submit"
+            onclick={this.props.handleClickShowDashboard}>Show Food!</Button> */}
         </form>
       </Paper>
     </main>

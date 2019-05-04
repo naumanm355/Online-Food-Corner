@@ -1,115 +1,105 @@
 const express = require("express");
-const cors = require("cors");
-const bodyParser = require('body-parser');
-const sql = require("mssql");
+//const exphbs=require('express-haldlebars');
 const app = express();
+const bodyParser = require("body-parser");
+const path=express('path');
+const db=require('./config/database');
+var apiRoutes = require('./routes/gigs.js');
+var PORT = process.env.PORT || 3000;
 
-app.use(cors())
-// app.use(cors({
-//   'allowedHeaders': ['sessionId', 'Content-Type'],
-//   'exposedHeaders': ['sessionId'],
-//   'origin': '*',
-//   'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//   'preflightContinue': false
-// }));
+// Sets up the Express app to handle data parsing
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
-let config = {
-  user: 'sa',
-  password: '12345',
-  server: 'localhost',
-  database: 'DB27',
+apiRoutes(app,db)
+
+db.authenticate().then(function () {
+  app.listen(PORT, function () {
+      console.log(`Listening on PORT ${PORT}`);
+  });
+});
+
+// db
+//   .authenticate()
+//   .then(() => {
+//       console.log('Connection has been established successfully.');
+//   })
+//   .catch(err => {
+//     console.error('Unable to connect to the database:', err);
+//   });
+
+
+// app.get('/',(req,res)=> res.send('Index'));
+
+// app.use('/gigs',require('./routes/gigs'));
  
-}
-new sql.connect(config, err => {
-   console.log(err);
-})
+// const PORT=process.env.listen || 5000;
+// app.listen(PORT,console.log(`Server Started on POrt ${PORT}`));
 
+//app.use(cors());
 
-/********************************************************************************************
-***************************************** Manage Students ***********************************
-*********************************************************************************************/
+//app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.json());
 
-app.get('/api/Accounts/list', (req, res) => {
-    request = new sql.Request()
-    let Query = `SELECT * FROM Cheff`;
-    request.query(Query, (err, data) => {
-      if(err) {
-        res.status(500).json({'dataStatus':'failure','err':err});
-        //res.send(err);
-      }else {
-        //res.send(data);
-        console.log("dsadasd"+data.recordsets.length);
-        res.status(200).json({'dataStatus':'succeess','data1':data});
-        
-      }
-    })
-})
+ 
+// app.get('/api/Accounts/getallproducts', (req, res) => {
 
-
-
-// app.post('/api/student/add', function(req, res) {
-
-//     const {FirstName, LastName, Contact, Email, RegistrationNumber, Status} = req.query;
-//     request = new sql.Request();
-
-//     let query = `Insert into Student(FirstName, LastName, Contact, Email, RegistrationNumber, Status)
-//     values('${FirstName}', '${LastName}', '${Contact}', '${Email}', '${RegistrationNumber}', ${`(Select LookupId from Lookup where '${Status}' = Lookup.LookupId )`})`;
-//     request.query(query, function(err, data) {
-//       if(err) {
-//         console.log(err);
-//         res.send(err);
-//       }
-//       res.send(data);
-//     });
-//   });
-
-/********************************************************************************************
-***************************************** Manage CLOs ***********************************
-*********************************************************************************************/
-
-
-// app.post('api/clo/add', function(req, res) {
-//   const {Name, DateCreated, DateUpdated} = req.query;
-//   request = new sql.request();
-//   let now = new Date();
-//   // console.log(now);
-
-//   let query = `Insert into Clo(Name, DateCreated, DateUpdated) values('${Name}', '${now}', '${now}')`;
-//   request.query(query, (err, data)=> {
-//     if(err) {
-//       console.log(err);
-//       res.send(err);
-//     }
-//     res.send(data);
-//   });
+//         const request = new sql.Request();          
+//         request.query('select * from Student', function (err, recordset) {
+            
+//             if (err) {
+//               console.log(err)
+//             }            
+//             res.send(recordset);
+            
+//         });
 // });
 
 
 
 
+ 
+
+// // app.js
+
+// const express = require("express");
+// const cors = require('cors');
+// const sql = require('mssql');
+// const bodyParser = require("body-parser");
+// const app = express();
+// const port = process.env.PORT || 3301;
+// //app.use(cors());
+// //app.options('*', cors());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+
+// const config = {
+//   user: 'sa',
+//   password: '12345',
+//   server: 'MALIK\\NAUMANSQL',
+//   database: 'Labb'
+// }
+//   new sql.connect(config, err=>{
+//     console.log(err);
+//   });
+
+// app.get('/getallproducts', (req, res) => {
+
+//         const request = new sql.Request();          
+//         request.query('select * from Student', function (err, recordset) {
+            
+//             if (err) {
+//               console.log(err)
+//             }            
+//             res.send(recordset);
+            
+//         });
+// });
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  let server = app.listen(3000, function() {
-    console.log("connection is established");
-  })
-  // For Second Query
-
+// let server = app.listen(1433, function () {
+//   console.log('Ssqerver is running..'+1433);
+// });
