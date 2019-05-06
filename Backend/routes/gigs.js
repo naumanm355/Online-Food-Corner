@@ -29,17 +29,7 @@ module.exports = function (app, db) {
   });
 
 
-  // app.put('/api/update/:id', function (req, res) {
-  //     db.gig.update({
-  //         name: req.body.name
-  //     }, {
-  //         where: {
-  //             id: req.params.id
-  //         }
-  //     }).then(function (result) {
-  //         res.json(result);
-  //     });
-  // });
+  
 
   app.delete('/api/delete/:id', function (req, res) {
     const { id } = req.params.Id;

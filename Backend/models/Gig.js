@@ -8,4 +8,8 @@ const Gig=db.define('gig', {
     type:Sequelize.STRING
   }
 })
+
+
+
+
 module.exports =Gig;
